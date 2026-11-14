@@ -344,7 +344,9 @@ function restore(){try{var s=JSON.parse(localStorage.getItem("cvr")||"null");if(
 restore();
 buildLists();buildModels();buildColors();phUI();render();
 setInterval(save,3000);
-if(location.hash==="#paye"){paid=true;$("dl").textContent="Télécharger le PDF (payé)";tab(true);var bn=document.createElement("div");bn.className="card";bn.textContent="Paiement reçu. Vérifiez votre CV puis cliquez sur « Télécharger le PDF ».";$("pp").insertBefore(bn,$("models"));$("app").scrollIntoView()}
+try{var T=Date.now();if(location.hash==="#paye")localStorage.setItem("cvr_paid",String(T));var pt=parseInt(localStorage.getItem("cvr_paid")||"0",10);if(pt&&T-pt<86400000)paid=true}catch(e){if(location.hash==="#paye")paid=true}
+if(paid){$("dl").textContent="Télécharger le PDF (payé)"}
+if(location.hash==="#paye"){tab(false);var bn=document.createElement("div");bn.className="card";bn.textContent="Paiement reçu. Remplissez votre CV, choisissez votre modèle, puis cliquez sur « Télécharger le PDF ».";$("pf").insertBefore(bn,$("pf").firstChild);$("app").scrollIntoView()}
 </script>
 </body>
 </html>
