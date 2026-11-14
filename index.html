@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>CV Rapide</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Inter:wght@300;400;600;700&family=Source+Serif+4:wght@400;600;700&display=swap">
 <style>
 :root{--bg:#f3f5f9;--surface:#fff;--ink:#101828;--mute:#5b6577;--line:#d9dfea;--acc:#2f5bff;--acc-ink:#fff;
@@ -224,6 +226,7 @@ body *{visibility:hidden}
 <h2>Votre CV est prêt</h2><div class="price" id="price"></div>
 <ul><li>PDF au format A4, sans filigrane</li><li>Modèle choisi : <span id="mname"></span></li><li>Paiement unique, sans abonnement</li></ul>
 <a class="pri" id="pay" target="_blank" rel="noopener" style="width:100%">Payer et télécharger</a>
+<button id="ipaid" style="width:100%;margin-top:8px;display:none">J’ai payé : débloquer le téléchargement</button>
 <button id="cancel" style="width:100%;margin-top:8px">Continuer à modifier</button>
 <div class="test" id="testNote"></div></div></div>
 <script>
@@ -393,10 +396,36 @@ function openModal(){
 $("dl").onclick=function(){paid?doPrint():openModal()};
 $("cancel").onclick=function(){$("modal").classList.remove("on")};
 $("pay").onclick=function(){
-  if(PAYMENT_URL){save();$("testNote").textContent="Si la page de paiement ne s’ouvre pas, copiez ce lien dans votre navigateur : "+PAYMENT_URL;return}
+  if(PAYMENT_URL){save();try{localStorage.setItem("cvr_pend",String(Date.now()))}catch(e){}$("ipaid").style.display="block";$("testNote").textContent="Après le paiement, revenez ici. Si la page de paiement ne s’ouvre pas, copiez ce lien : "+PAYMENT_URL;return}
   paid=true;$("modal").classList.remove("on");$("dl").textContent="Télécharger le PDF (payé)";doPrint();
 };
-function doPrint(){tab(true);setTimeout(function(){window.print()},120)}
+function unlock(){paid=true;try{localStorage.setItem("cvr_paid",String(Date.now()))}catch(e){}$("dl").textContent="Télécharger le PDF (payé)";$("modal").classList.remove("on")}
+$("ipaid").onclick=function(){unlock();doPrint()};
+function fallbackPrint(){try{window.print()}catch(e){alert("Impossible de créer le PDF sur cet appareil. Ouvrez le site dans Safari ou Chrome et réessayez.")}}
+function doPrint(){
+  tab(true);
+  var btn=$("dl"),old=btn.textContent;btn.textContent="Création du PDF…";btn.disabled=true;
+  function done(){btn.disabled=false;btn.textContent=old}
+  setTimeout(function(){
+    if(!window.html2canvas||!window.jspdf){fallbackPrint();done();return}
+    html2canvas($("cv"),{scale:2,useCORS:true,backgroundColor:"#ffffff",windowWidth:794,onclone:function(d){
+      var c=d.getElementById("cv");c.style.transform="none";c.style.animation="none";
+      var w=d.getElementById("wrap");w.style.overflow="visible";w.style.height="auto";w.style.padding="0";
+    }}).then(function(canvas){
+      var J=window.jspdf.jsPDF,pdf=new J({unit:"mm",format:"a4"}),W=210,H=297;
+      var pxPage=Math.floor(canvas.width*H/W),pages=Math.ceil(canvas.height/pxPage);
+      for(var p=0;p<pages;p++){
+        var sh=Math.min(pxPage,canvas.height-p*pxPage),part=document.createElement("canvas");
+        part.width=canvas.width;part.height=sh;
+        part.getContext("2d").drawImage(canvas,0,p*pxPage,canvas.width,sh,0,0,canvas.width,sh);
+        if(p>0)pdf.addPage();
+        pdf.addImage(part.toDataURL("image/jpeg",0.95),"JPEG",0,0,W,sh*W/canvas.width);
+      }
+      var nm=(D.name||"CV").replace(/[^\w\- ]+/g,"").trim().replace(/\s+/g,"-")||"CV";
+      pdf.save("CV-"+nm+".pdf");done();
+    }).catch(function(){fallbackPrint();done()});
+  },150);
+}
 
 $("priceTag").textContent=PRICE+" · paiement unique";var lp=$("lp");if(lp)lp.textContent=PRICE;if(PAYMENT_URL){$("pay").href=PAYMENT_URL}
 function save(){try{localStorage.setItem("cvr",JSON.stringify({D:D,model:model,ACC:ACC}))}catch(e){}}
@@ -404,9 +433,10 @@ function restore(){try{var s=JSON.parse(localStorage.getItem("cvr")||"null");if(
 restore();
 buildLists();buildModels();buildColors();phUI();render();
 setInterval(save,3000);
-try{var T=Date.now();if(location.hash==="#paye")localStorage.setItem("cvr_paid",String(T));var pt=parseInt(localStorage.getItem("cvr_paid")||"0",10);if(pt&&T-pt<86400000)paid=true}catch(e){if(location.hash==="#paye")paid=true}
+var RET=/paye|paid|success|succes/i.test(location.hash+location.search)||/chariow/i.test(document.referrer);try{var T=Date.now();if(RET)localStorage.setItem("cvr_paid",String(T));var pt=parseInt(localStorage.getItem("cvr_paid")||"0",10);if(pt&&T-pt<86400000)paid=true}catch(e){if(RET)paid=true}
 if(paid){$("dl").textContent="Télécharger le PDF (payé)"}
-if(location.hash==="#paye"){tab(false);var bn=document.createElement("div");bn.className="card";bn.textContent="Paiement reçu. Remplissez votre CV, choisissez votre modèle, puis cliquez sur « Télécharger le PDF ».";$("pf").insertBefore(bn,$("pf").firstChild);$("app").scrollIntoView()}
+if(RET){tab(false);var bn=document.createElement("div");bn.className="card";bn.textContent="Paiement reçu. Remplissez votre CV, choisissez votre modèle, puis cliquez sur « Télécharger le PDF ».";$("pf").insertBefore(bn,$("pf").firstChild);$("app").scrollIntoView()}
+try{var pd=parseInt(localStorage.getItem("cvr_pend")||"0",10);if(!paid&&pd&&Date.now()-pd<7200000){$("ipaid").style.display="block";var b2=document.createElement("div");b2.className="card";b2.innerHTML="<b>Vous venez de payer ?</b><br>Touchez le bouton pour débloquer le téléchargement de votre PDF.<br>";var bt=document.createElement("button");bt.className="pri";bt.style.marginTop="10px";bt.textContent="J’ai payé : débloquer le téléchargement";bt.onclick=function(){unlock();b2.remove();doPrint()};b2.appendChild(bt);$("pf").insertBefore(b2,$("pf").firstChild)}}catch(e){}
 </script>
 </body>
 </html>
