@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CV Rapide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Inter:wght@300;400;600;700&family=Source+Serif+4:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#f3f5f9;--surface:#fff;--ink:#101828;--mute:#5b6577;--line:#d9dfea;--acc:#2f5bff;--acc-ink:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1320;--surface:#171e30;--ink:#eef1f8;--mute:#9aa5bd;--line:#2a3350;--acc:#6f8cff;--acc-ink:#0e1320}}
+:root[data-theme="dark"]{--bg:#0e1320;--surface:#171e30;--ink:#eef1f8;--mute:#9aa5bd;--line:#2a3350;--acc:#6f8cff;--acc-ink:#0e1320}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Bricolage Grotesque",system-ui,sans-serif}
+header{padding:20px 16px 8px;max-width:1100px;margin:0 auto}
+h1{font-size:1.7rem;margin:0;letter-spacing:-.02em}
+header p{margin:4px 0 0;color:var(--mute)}
+.tabs{display:flex;gap:8px;padding:12px 16px;max-width:1100px;margin:0 auto}
+.tabs button{flex:1}
+main{display:grid;gap:16px;padding:0 16px 110px;max-width:1100px;margin:0 auto}
+@media(min-width:860px){main{grid-template-columns:420px 1fr;align-items:start}.tabs{display:none}.panel{display:block!important}}
+.panel{display:none}.panel.on{display:block}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
+.card h2{font-size:1.05rem;margin:0 0 10px}
+label{display:block;font-size:.85rem;color:var(--mute);margin:10px 0 4px}
+input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px}
+textarea{min-height:70px;resize:vertical}
+input:focus,textarea:focus,button:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:10px 14px}
+button.on{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
+.pri{background:var(--acc);color:var(--acc-ink);border-color:var(--acc);font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.item{border-top:1px dashed var(--line);margin-top:12px;padding-top:4px}
+.small{font-size:.85rem;padding:6px 10px}
+.photo{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.photo .pv{width:72px;height:72px;border-radius:50%;background:var(--bg);border:1px solid var(--line);object-fit:cover;flex:none}
+.photo input{display:none}
+#cv .ph{float:right;width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 0 8px 16px}
+#cv h3{clear:both}
+.models{display:flex;gap:8px;margin-bottom:12px;overflow-x:auto}
+.models button{flex:1;min-width:110px}
+.paper-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+#cv{width:794px;min-height:1000px;background:#fff;color:#1a1a1a;padding:44px 48px;font-size:14px;line-height:1.45;transform-origin:top left}
+#cv h1{font-size:30px;margin:0;line-height:1.1}
+#cv h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin:22px 0 8px}
+#cv .sub{font-size:16px;margin:4px 0 6px}
+#cv .ct{font-size:12.5px;color:#555}
+#cv .e{margin-bottom:10px}#cv .e b{display:block}#cv .e span{color:#666;font-size:12.5px}
+#cv .e p{margin:2px 0 0;white-space:pre-line}
+#cv .tags span{display:inline-block;border:1px solid #bbb;border-radius:20px;padding:2px 10px;margin:0 6px 6px 0;font-size:12.5px}
+.t-classique{font-family:Georgia,serif}.t-classique h1,.t-classique h3{border-bottom:2px solid #1a1a1a;padding-bottom:4px}.t-classique h1{text-align:center;border:0}.t-classique .sub,.t-classique .ct{text-align:center}
+.t-moderne{font-family:system-ui,sans-serif;border-top:14px solid #2f5bff}.t-moderne h1{color:#2f5bff}.t-moderne h3{color:#2f5bff}.t-moderne .tags span{background:#eaf0ff;border-color:#eaf0ff}
+.t-minimaliste{font-family:system-ui,sans-serif;font-weight:300}.t-minimaliste h1{font-weight:300;letter-spacing:.04em}.t-minimaliste h3{font-weight:600;color:#888;border-left:3px solid #ccc;padding-left:8px}
+#cv{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#cv.m-moderne,#cv.m-creatif,#cv.m-elegant{padding:0;font-family:system-ui,sans-serif}
+#cv.m-moderne{display:grid;grid-template-columns:250px 1fr}
+#cv.m-creatif{display:grid;grid-template-columns:1fr 240px}
+#cv aside{padding:36px 22px}
+#cv aside h3{clear:none;margin-top:20px}
+#cv aside div{font-size:12.5px;word-break:break-word;margin-bottom:3px}
+#cv.m-moderne aside{background:var(--a);color:#fff}
+#cv.m-moderne aside h3{color:#fff;border-bottom:1px solid rgba(255,255,255,.45);padding-bottom:4px}
+#cv.m-creatif aside{background:#f2f3f7}
+#cv .mn{padding:40px 34px}
+#cv.m-moderne .mn h1,#cv.m-creatif .mn h1{color:var(--a)}
+#cv.m-moderne .mn h3,#cv.m-creatif .mn h3{color:var(--a)}
+#cv.m-creatif aside h3{color:var(--a)}
+#cv.m-creatif .e{border-left:3px solid var(--a);padding-left:10px}
+#cv .ph2{width:130px;height:130px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 10px;border:4px solid rgba(255,255,255,.6)}
+#cv.m-creatif .ph2{border-color:var(--a)}
+#cv .sl{margin:0;padding-left:16px;font-size:13px}
+#cv .hdr{background:#14213d;color:#fff;padding:36px 48px;display:flex;gap:24px;align-items:center}
+#cv .hdr h1{color:#fff}#cv .hdr .ct{color:#cbd3e6}
+#cv .hdr .ph2{margin:0;flex:none;border-color:var(--a)}
+#cv .bd{padding:6px 48px 40px}
+#cv.m-elegant h3{color:var(--a);border-bottom:2px solid var(--a);padding-bottom:3px}
+#cv.m-elegant .e{border-left:3px solid var(--a);padding-left:12px}
+#cv.m-elegant .tags span{background:var(--a);border-color:var(--a);color:#fff}
+#cv.t-minimaliste h3{border-left-color:var(--a)}
+.sw{width:34px;height:34px;border-radius:50%;padding:0;border:2px solid var(--line)}
+.sw.on{box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--ink)}
+header.hero{max-width:none;margin:0;padding:26px 16px 30px;background:#0f1b3d;color:#fff}
+header.hero .in{max-width:1100px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;margin-bottom:20px}
+.mk{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#2f5bff;color:#fff;font-size:.85rem}
+header.hero h1{font-size:clamp(1.8rem,6vw,2.9rem);line-height:1.08;max-width:18ch;margin:0 0 12px}
+header.hero p{color:#c9d3ee;max-width:52ch;margin:0 0 18px;font-size:1.02rem}
+.pts{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.pts li{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 12px;font-size:.85rem;color:#e6ecff}
+.tabs{padding-top:16px}
+.tabs button{font-weight:700;padding:12px 8px}
+.tabs button.on{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+main{padding-top:4px;padding-bottom:24px}
+.card{border-radius:16px;box-shadow:0 1px 3px rgba(16,24,40,.08);padding:18px}
+.card h2{font-size:1.12rem}
+.paper-wrap{box-shadow:0 10px 32px rgba(16,24,40,.14)}
+.models button{font-weight:700}
+.pri{border-radius:12px}
+.pri:hover{filter:brightness(1.08)}
+.bar #priceTag{font-weight:700;font-size:1rem}
+footer.ft{max-width:1100px;margin:0 auto;padding:8px 16px 120px;color:var(--mute);font-size:.82rem;text-align:center}
+#cv{min-height:1123px;font-family:Inter,system-ui,sans-serif;font-size:13.5px;line-height:1.55;color:#1c2330}
+#cv.t-classique,#cv.t-classique h1,#cv.m-elegant h1{font-family:"Source Serif 4",Georgia,serif}
+#cv h1{letter-spacing:-.01em;font-size:32px}
+#cv h3{font-size:11.5px;letter-spacing:.14em;font-weight:700;margin:24px 0 10px}
+#cv .e{break-inside:avoid;margin-bottom:13px}
+#cv .e b{font-size:14px}
+#cv .lg{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;margin-bottom:4px}
+#cv .lg span+span{opacity:.75}
+#cv .tags span{border-radius:6px;font-size:12px}
+.hg{display:grid;gap:32px;align-items:center}
+@media(min-width:860px){.hg{grid-template-columns:1.15fr .85fr}}
+.cta{display:inline-block;background:#fff;color:#0f1b3d;font-weight:700;padding:14px 26px;border-radius:12px;text-decoration:none;margin:4px 0 18px}
+.cta:hover{background:#e6ecff}.cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.mock{position:relative;justify-self:center;width:min(280px,76%);margin:8px 0 12px}
+.mc{display:grid;grid-template-columns:34% 1fr;background:#fff;border-radius:10px;aspect-ratio:210/297;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45);transform:rotate(3deg)}
+.ms{background:#2f5bff;padding:16px 10px;display:flex;flex-direction:column;gap:8px}
+.ms .av{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.88);margin:0 auto 8px;display:block}
+.ms b{display:block;height:5px;border-radius:3px;background:rgba(255,255,255,.55)}
+.mm{padding:18px 12px;display:flex;flex-direction:column;gap:8px}
+.mm u{display:block;height:5px;border-radius:3px;background:#d6dbe6}
+.mm .t{height:13px;width:72%;background:#2f5bff}.mm .s{width:55%}
+.chip{position:absolute;left:-16px;bottom:28px;background:#fff;color:#0f1b3d;border-radius:12px;padding:8px 14px;font-size:.82rem;font-weight:700;box-shadow:0 10px 28px rgba(0,0,0,.3)}
+.land{max-width:1100px;margin:0 auto;padding:44px 16px 8px}
+.land h2{font-size:clamp(1.4rem,4vw,2rem);margin:0 0 16px;letter-spacing:-.02em}
+.steps,.why{display:grid;gap:12px}
+@media(min-width:720px){.steps,.why{grid-template-columns:repeat(3,1fr)}}
+.step,.why>div{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+.step .n{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--acc);color:var(--acc-ink);font-weight:700;margin-bottom:10px}
+.step b,.why b{display:block;margin-bottom:4px;font-size:1.05rem}
+.step>span:not(.n),.why span{color:var(--mute);font-size:.95rem}
+.priceband{margin:28px 0 0;background:#0f1b3d;color:#fff;border-radius:18px;padding:24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.priceband b{font-size:1.9rem}.priceband span{color:#c9d3ee}.priceband .cta{margin:0}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:8px}
+summary{cursor:pointer;font-weight:700}details p{margin:8px 0 0;color:var(--mute)}
+#app{scroll-margin-top:12px;max-width:1100px;margin:0 auto;padding:36px 16px 0}
+.appt{font-size:clamp(1.4rem,4vw,2rem);margin:0;letter-spacing:-.02em}
+a.pri{display:block;text-align:center;text-decoration:none;padding:12px 14px;cursor:pointer}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:12px;align-items:center;justify-content:center;z-index:5}
+.bar .pri{padding:12px 22px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+.modal.on{display:flex}
+.box{background:var(--surface);border-radius:16px;padding:20px;max-width:380px;width:100%}
+.box h2{margin:0 0 6px}.price{font-size:2rem;font-weight:700;margin:6px 0}
+.box ul{padding-left:18px;color:var(--mute);margin:8px 0 16px}
+.test{font-size:.8rem;color:var(--mute);margin-top:10px}
+@media print{
+@page{size:A4;margin:0}
+body *{visibility:hidden}
+#cv,#cv *{visibility:visible}
+#cv{position:absolute;left:0;top:0;width:210mm;min-height:297mm;transform:none!important;padding:14mm 16mm}
+}
+</style>
+</head>
+<body>
+<header class="hero"><div class="in"><div class="logo"><span class="mk">CV</span>CV Rapide</div><div class="hg"><div class="hl"><h1>Votre CV professionnel, prêt en 5 minutes</h1><p>Remplissez vos informations, choisissez un modèle et téléchargez un PDF propre, prêt à envoyer aux recruteurs.</p><a class="cta" href="#app">Créer mon CV maintenant</a><ul class="pts"><li>5 modèles soignés</li><li>Aperçu en direct</li><li>PDF au format A4</li><li>Vos données restent sur votre appareil</li></ul></div><div class="mock"><div class="mc"><div class="ms"><i class="av"></i><b></b><b></b><b></b><b></b></div><div class="mm"><u class="t"></u><u class="s"></u><u></u><u></u><u class="s"></u><u></u><u></u><u class="s"></u><u></u></div></div><div class="chip">Aperçu en direct</div></div></div></div></header>
+<section class="land"><h2>Un CV soigné en trois étapes</h2><div class="steps"><div class="step"><span class="n">1</span><b>Remplissez</b><span>Saisissez votre parcours et ajoutez votre photo. Tout est gratuit jusqu’au téléchargement.</span></div><div class="step"><span class="n">2</span><b>Choisissez</b><span>5 modèles et 6 couleurs, avec un aperçu qui se met à jour à chaque lettre.</span></div><div class="step"><span class="n">3</span><b>Téléchargez</b><span>Payez une seule fois et enregistrez votre CV en PDF, prêt à envoyer.</span></div></div>
+<div class="why" style="margin-top:12px"><div><b>Rapide</b><span>Pas de compte à créer. Vous commencez tout de suite.</span></div><div><b>Clair pour les recruteurs</b><span>Des mises en page sobres, lisibles et bien hiérarchisées.</span></div><div><b>Confidentiel</b><span>Vos informations restent dans votre navigateur.</span></div></div>
+<div class="priceband"><div><b><span id="lp"></span></b> <span>par CV. Paiement unique, sans abonnement.</span></div><a class="cta" href="#app">Commencer</a></div></section>
+<div id="app"><h2 class="appt">Créez votre CV</h2></div>
+<div class="tabs"><button id="tabF" class="on">1. Vos informations</button><button id="tabP">2. Modèle et aperçu</button></div>
+<main>
+<section class="panel on" id="pf">
+<div class="card"><h2>Identité</h2>
+<label>Photo (facultative)</label>
+<div class="photo"><img class="pv" id="pv" alt="" style="display:none"><div class="row"><button class="small" id="pickPh" type="button">Ajouter une photo</button><button class="small" id="rmPh" type="button" style="display:none">Retirer</button></div><input type="file" id="phIn" accept="image/*"></div>
+<label>Nom complet</label><input id="name">
+<label>Poste visé</label><input id="title">
+<label>Email</label><input id="email" type="email">
+<label>Téléphone</label><input id="phone">
+<label>Ville / pays</label><input id="city">
+<label>Profil (2-3 phrases)</label><textarea id="summary"></textarea></div>
+<div class="card"><h2>Expériences</h2><div id="exps"></div><button class="small" id="addExp">Ajouter une expérience</button></div>
+<div class="card"><h2>Formation</h2><div id="edus"></div><button class="small" id="addEdu">Ajouter une formation</button></div>
+<div class="card"><h2>Compétences</h2><label>Séparées par des virgules</label><input id="skills"></div>
+<div class="card"><h2>Langues et centres d’intérêt</h2><label>Langues (format Langue:Niveau, séparées par des virgules)</label><input id="langs"><label>Centres d’intérêt (séparés par des virgules)</label><input id="ints"></div>
+</section>
+<section class="panel" id="pp">
+<div class="models" id="models"></div>
+<div class="row" id="colors" style="margin-bottom:12px;align-items:center"></div>
+<div class="paper-wrap" id="wrap"><div id="cv"></div></div>
+</section>
+</main>
+<section class="land" id="faq"><h2>Questions fréquentes</h2><details><summary>Puis-je modifier mon CV avant de payer ?</summary><p>Oui. Vous remplissez, changez de modèle et de couleur autant que vous voulez. Le paiement n’intervient qu’au téléchargement.</p></details><details><summary>Dans quel format est mon CV ?</summary><p>Un PDF au format A4, que vous pouvez envoyer par email ou déposer sur les sites d’emploi.</p></details><details><summary>Mes informations sont-elles conservées ?</summary><p>Non. Elles restent dans votre navigateur et ne sont enregistrées sur aucun serveur.</p></details></section>
+<footer class="ft">CV Rapide. Paiement unique, sans abonnement. Vos informations ne sont enregistrées sur aucun serveur.</footer>
+<div class="bar"><span id="priceTag">2,99 €</span><button class="pri" id="dl">Télécharger le PDF</button></div>
+<div class="modal" id="modal"><div class="box">
+<h2>Votre CV est prêt</h2><div class="price" id="price"></div>
+<ul><li>PDF au format A4, sans filigrane</li><li>Modèle choisi : <span id="mname"></span></li><li>Paiement unique, sans abonnement</li></ul>
+<a class="pri" id="pay" target="_blank" rel="noopener" style="width:100%">Payer et télécharger</a>
+<button id="cancel" style="width:100%;margin-top:8px">Continuer à modifier</button>
+<div class="test" id="testNote"></div></div></div>
+<script>
+// À MODIFIER : prix et lien de paiement (Stripe Payment Link, Chariow, etc.)
+var PRICE = "650 FCFA";
+var PAYMENT_URL = "https://gwpfyscv.mychariow.shop/prd_5pk53yh4"; // laissez vide = mode test (paiement simulé)
+
+var D = {name:"Awa Koné",title:"Assistante commerciale",email:"awa.kone@email.com",phone:"+225 07 00 00 00 00",city:"Abidjan",
+summary:"Assistante commerciale avec 3 ans d’expérience en relation client et suivi de ventes. Organisée, à l’écoute et orientée résultats.",
+exps:[{role:"Assistante commerciale",co:"Société Horizon",per:"2022 – 2025",desc:"Suivi de 120 clients actifs\nPréparation des devis et relances"}],
+edus:[{t:"BTS Commerce international",s:"Institut Supérieur de Gestion",p:"2019 – 2021"}],
+skills:"Relation client, Excel, Négociation, Gestion de projet",langs:"Français:Langue maternelle, Anglais:Courant",ints:"Lecture, Voyage, Bénévolat"};
+var model = "moderne", paid = false;
+var MODELS = {moderne:"Moderne",elegant:"Élégant",creatif:"Créatif",classique:"Classique",minimaliste:"Minimaliste"};
+var ACC = "#2f5bff";
+function $(i){return document.getElementById(i)}
+function esc(s){var d=document.createElement("div");d.textContent=s||"";return d.innerHTML}
+
+["name","title","email","phone","city","summary","skills","langs","ints"].forEach(function(k){
+  $(k).value=D[k];
+  $(k).addEventListener("input",function(){D[k]=this.value;render()});
+});
+
+function listUI(boxId,arr,fields,addId,blank,delLabel){
+  var box=$(boxId);box.innerHTML="";
+  arr.forEach(function(it,i){
+    var div=document.createElement("div");div.className="item";
+    fields.forEach(function(f){
+      var l=document.createElement("label");l.textContent=f[1];div.appendChild(l);
+      var inp=document.createElement(f[2]==="area"?"textarea":"input");inp.value=it[f[0]]||"";
+      inp.addEventListener("input",function(){it[f[0]]=this.value;render()});div.appendChild(inp);
+    });
+    var b=document.createElement("button");b.className="small";b.textContent=delLabel;b.style.marginTop="10px";
+    b.addEventListener("click",function(){arr.splice(i,1);buildLists();render()});div.appendChild(b);
+    box.appendChild(div);
+  });
+}
+function buildLists(){
+  listUI("exps",D.exps,[["role","Poste"],["co","Entreprise"],["per","Période"],["desc","Missions (une par ligne)","area"]],"addExp",0,"Supprimer cette expérience");
+  listUI("edus",D.edus,[["t","Diplôme"],["s","École"],["p","Période"]],"addEdu",0,"Supprimer cette formation");
+}
+$("addExp").onclick=function(){D.exps.push({role:"",co:"",per:"",desc:""});buildLists();render()};
+$("addEdu").onclick=function(){D.edus.push({t:"",s:"",p:""});buildLists();render()};
+
+function phUI(){
+  var has=!!D.photo;
+  $("pv").style.display=has?"block":"none";if(has)$("pv").src=D.photo;
+  $("rmPh").style.display=has?"inline-block":"none";
+  $("pickPh").textContent=has?"Changer la photo":"Ajouter une photo";
+}
+$("pickPh").onclick=function(){$("phIn").click()};
+$("rmPh").onclick=function(){D.photo="";$("phIn").value="";phUI();render()};
+$("phIn").addEventListener("change",function(){
+  var f=this.files&&this.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    var im=new Image();
+    im.onload=function(){
+      var c=document.createElement("canvas"),n=400;c.width=n;c.height=n;
+      var s=Math.min(im.width,im.height),sx=(im.width-s)/2,sy=(im.height-s)/2;
+      c.getContext("2d").drawImage(im,sx,sy,s,s,0,0,n,n);
+      D.photo=c.toDataURL("image/jpeg",0.85);phUI();render();
+    };
+    im.src=r.result;
+  };
+  r.readAsDataURL(f);
+});
+
+function renderLegacy(){
+  var h=(D.photo?"<img class='ph' alt='' src='"+D.photo+"'>":"")+"<h1>"+esc(D.name)+"</h1><div class='sub'>"+esc(D.title)+"</div>";
+  var ct=[D.email,D.phone,D.city].filter(Boolean).map(esc).join(" &nbsp;|&nbsp; ");
+  h+="<div class='ct'>"+ct+"</div>";
+  if(D.summary)h+="<h3>Profil</h3><p style='margin:0'>"+esc(D.summary)+"</p>";
+  if(D.exps.length){h+="<h3>Expériences</h3>";D.exps.forEach(function(e){h+="<div class='e'><b>"+esc(e.role)+(e.co?" – "+esc(e.co):"")+"</b><span>"+esc(e.per)+"</span><p>"+esc(e.desc)+"</p></div>"})}
+  if(D.edus.length){h+="<h3>Formation</h3>";D.edus.forEach(function(e){h+="<div class='e'><b>"+esc(e.t)+"</b><span>"+esc(e.s)+(e.p?" · "+esc(e.p):"")+"</span></div>"})}
+  var sk=D.skills.split(",").map(function(s){return s.trim()}).filter(Boolean);
+  if(sk.length)h+="<h3>Compétences</h3><div class='tags'>"+sk.map(function(s){return "<span>"+esc(s)+"</span>"}).join("")+"</div>";
+  var cv=$("cv");cv.className="t-"+model;cv.innerHTML=h;fit();
+}
+function render(){
+  var ph2=D.photo?"<img class='ph2' alt='' src='"+D.photo+"'>":"";
+  var ph=D.photo?"<img class='ph' alt='' src='"+D.photo+"'>":"";
+  var cts=[D.email,D.phone,D.city].filter(Boolean);
+  var ctBlock=cts.map(function(x){return "<div>"+esc(x)+"</div>"}).join("");
+  var ctLine="<div class='ct'>"+cts.map(esc).join(" &nbsp;|&nbsp; ")+"</div>";
+  var head="<h1>"+esc(D.name)+"</h1><div class='sub'>"+esc(D.title)+"</div>";
+  var prof=D.summary?"<h3>Profil</h3><p style='margin:0'>"+esc(D.summary)+"</p>":"";
+  var ex=D.exps.length?"<h3>Expériences</h3>"+D.exps.map(function(e){return "<div class='e'><b>"+esc(e.role)+(e.co?" – "+esc(e.co):"")+"</b><span>"+esc(e.per)+"</span><p>"+esc(e.desc)+"</p></div>"}).join(""):"";
+  var ed=D.edus.length?"<h3>Formation</h3>"+D.edus.map(function(e){return "<div class='e'><b>"+esc(e.t)+"</b><span>"+esc(e.s)+(e.p?" · "+esc(e.p):"")+"</span></div>"}).join(""):"";
+  var sk=D.skills.split(",").map(function(s){return s.trim()}).filter(Boolean);
+  var skTags=sk.length?"<h3>Compétences</h3><div class='tags'>"+sk.map(function(s){return "<span>"+esc(s)+"</span>"}).join("")+"</div>":"";
+  var skList=sk.length?"<h3>Compétences</h3><ul class='sl'>"+sk.map(function(s){return "<li>"+esc(s)+"</li>"}).join("")+"</ul>":"";
+  var lgs=D.langs.split(",").map(function(x){return x.trim()}).filter(Boolean).map(function(x){var p=x.split(":");return [p[0].trim(),(p[1]||"").trim()]});
+  var its=D.ints.split(",").map(function(x){return x.trim()}).filter(Boolean);
+  var lgBlock=lgs.length?"<h3>Langues</h3>"+lgs.map(function(l){return "<div class='lg'><span>"+esc(l[0])+"</span><span>"+esc(l[1])+"</span></div>"}).join(""):"";
+  var lgInline=lgs.length?"<h3>Langues</h3><div class='tags'>"+lgs.map(function(l){return "<span>"+esc(l[0])+(l[1]?" · "+esc(l[1]):"")+"</span>"}).join("")+"</div>":"";
+  var itList=its.length?"<h3>Centres d’intérêt</h3><ul class='sl'>"+its.map(function(s){return "<li>"+esc(s)+"</li>"}).join("")+"</ul>":"";
+  var itInline=its.length?"<h3>Centres d’intérêt</h3><div class='tags'>"+its.map(function(s){return "<span>"+esc(s)+"</span>"}).join("")+"</div>":"";
+  var h,cls;
+  if(model==="moderne"){cls="m-moderne";h="<aside>"+ph2+"<h3>Contact</h3>"+ctBlock+skList+lgBlock+itList+"</aside><div class='mn'>"+head+prof+ex+ed+"</div>"}
+  else if(model==="creatif"){cls="m-creatif";h="<div class='mn'>"+head+prof+ex+ed+"</div><aside>"+ph2+"<h3>Contact</h3>"+ctBlock+skTags+lgBlock+itList+"</aside>"}
+  else if(model==="elegant"){cls="m-elegant";h="<div class='hdr'>"+ph2+"<div>"+head+ctLine+"</div></div><div class='bd'>"+prof+ex+ed+skTags+lgInline+itInline+"</div>"}
+  else{cls="t-"+model;h=ph+head+ctLine+prof+ex+ed+skTags+lgInline+itInline}
+  var cv=$("cv");cv.className=cls;cv.style.setProperty("--a",ACC);cv.innerHTML=h;fit();
+}
+function buildColors(){
+  var c=$("colors");c.innerHTML="";
+  var l=document.createElement("span");l.textContent="Couleur";l.style.cssText="color:var(--mute);font-size:.85rem";c.appendChild(l);
+  ["#2f5bff","#0f766e","#b91c1c","#7c3aed","#c2410c","#1f2937"].forEach(function(k){
+    var b=document.createElement("button");b.className="sw"+(k===ACC?" on":"");b.style.background=k;b.setAttribute("aria-label","Couleur "+k);
+    b.onclick=function(){ACC=k;buildColors();render()};c.appendChild(b);
+  });
+}
+function fit(){
+  var w=$("wrap"),cv=$("cv"),avail=w.clientWidth-24;
+  if(!avail||avail<0)return;
+  var s=Math.min(1,avail/794);cv.style.transform="scale("+s+")";
+  w.style.height=(cv.offsetHeight*s+24)+"px";
+}
+window.addEventListener("resize",fit);
+
+function buildModels(){
+  var m=$("models");m.innerHTML="";
+  Object.keys(MODELS).forEach(function(k){
+    var b=document.createElement("button");b.textContent=MODELS[k];if(k===model)b.className="on";
+    b.onclick=function(){model=k;buildModels();render()};m.appendChild(b);
+  });
+}
+function tab(p){
+  $("pf").classList.toggle("on",!p);$("pp").classList.toggle("on",p);
+  $("tabF").classList.toggle("on",!p);$("tabP").classList.toggle("on",p);
+  if(p)setTimeout(fit,30);
+}
+$("tabF").onclick=function(){tab(false)};
+$("tabP").onclick=function(){tab(true)};
+
+function openModal(){
+  $("price").textContent=PRICE;$("mname").textContent=MODELS[model];
+  $("testNote").textContent=PAYMENT_URL?"":"Mode test : le paiement est simulé. Aucun argent n’est prélevé.";
+  $("modal").classList.add("on");
+}
+$("dl").onclick=function(){paid?doPrint():openModal()};
+$("cancel").onclick=function(){$("modal").classList.remove("on")};
+$("pay").onclick=function(){
+  if(PAYMENT_URL){save();$("testNote").textContent="Si la page de paiement ne s’ouvre pas, copiez ce lien dans votre navigateur : "+PAYMENT_URL;return}
+  paid=true;$("modal").classList.remove("on");$("dl").textContent="Télécharger le PDF (payé)";doPrint();
+};
+function doPrint(){tab(true);setTimeout(function(){window.print()},120)}
+
+$("priceTag").textContent=PRICE+" · paiement unique";var lp=$("lp");if(lp)lp.textContent=PRICE;if(PAYMENT_URL){$("pay").href=PAYMENT_URL}
+function save(){try{localStorage.setItem("cvr",JSON.stringify({D:D,model:model,ACC:ACC}))}catch(e){}}
+function restore(){try{var s=JSON.parse(localStorage.getItem("cvr")||"null");if(s&&s.D){D=s.D;model=s.model||model;ACC=s.ACC||ACC;["name","title","email","phone","city","summary","skills","langs","ints"].forEach(function(k){$(k).value=D[k]||""})}}catch(e){}}
+restore();
+buildLists();buildModels();buildColors();phUI();render();
+setInterval(save,3000);
+if(location.hash==="#paye"){paid=true;$("dl").textContent="Télécharger le PDF (payé)";tab(true);var bn=document.createElement("div");bn.className="card";bn.textContent="Paiement reçu. Vérifiez votre CV puis cliquez sur « Télécharger le PDF ».";$("pp").insertBefore(bn,$("models"));$("app").scrollIntoView()}
+</script>
+</body>
+</html>
