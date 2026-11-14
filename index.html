@@ -137,6 +137,30 @@ summary{cursor:pointer;font-weight:700}details p{margin:8px 0 0;color:var(--mute
 #app{scroll-margin-top:12px;max-width:1100px;margin:0 auto;padding:36px 16px 0}
 .appt{font-size:clamp(1.4rem,4vw,2rem);margin:0;letter-spacing:-.02em}
 a.pri{display:block;text-align:center;text-decoration:none;padding:12px 14px;cursor:pointer}
+html{scroll-behavior:smooth}
+.mc{transition:opacity .3s;animation:fl 6s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:rotate(3deg) translateY(0)}50%{transform:rotate(1.5deg) translateY(-10px)}}
+.mc .ms{background:var(--mc,#2f5bff);transition:background .5s}
+.mc .mm .t{background:var(--mc,#2f5bff)}
+.mc.v1{grid-template-columns:1fr 34%}.mc.v1 .ms{order:2}
+.mc.v2{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+.mc.v2 .ms{flex-direction:row;align-items:center;padding:12px;background:#14213d}
+.mc.v2 .ms .av{margin:0;width:34px;height:34px;flex:none}.mc.v2 .ms b{flex:1}.mc.v2 .ms b:nth-of-type(n+3){display:none}
+.mc.v3{grid-template-columns:1fr}.mc.v3 .ms{display:none}
+.cta{transition:transform .2s,box-shadow .2s;animation:pu 2.6s ease-in-out infinite}
+.cta:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+@keyframes pu{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.45)}60%{box-shadow:0 0 0 12px rgba(255,255,255,0)}}
+.rv{opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}.rv.in{opacity:1;transform:none}
+.step,.why>div{transition:transform .2s,border-color .2s}
+.step:hover,.why>div:hover{transform:translateY(-4px);border-color:var(--acc)}
+.prog .pl{font-weight:700;margin-bottom:8px}
+.pb{height:8px;border-radius:99px;background:var(--bg);overflow:hidden}
+.pb i{display:block;height:100%;width:0;background:var(--acc);border-radius:99px;transition:width .4s}
+@media (prefers-reduced-motion:reduce){.mc,.cta{animation:none}.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+.lk{background:none;border:0;color:inherit;text-decoration:underline;padding:6px;cursor:pointer;font:inherit}
+#lgm .box{max-width:560px;max-height:85vh;overflow:auto}
+#lgm h2{margin-bottom:4px}#lgm h3{font-size:1rem;margin:16px 0 4px}
+#lgm p{margin:0;color:var(--mute);font-size:.92rem}
 .bar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:12px;align-items:center;justify-content:center;z-index:5}
 .bar .pri{padding:12px 22px}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
@@ -162,6 +186,7 @@ body *{visibility:hidden}
 <div class="tabs"><button id="tabF" class="on">1. Vos informations</button><button id="tabP">2. Modèle et aperçu</button></div>
 <main>
 <section class="panel on" id="pf">
+<div class="card prog"><div class="pl" id="pt">Votre CV est complet à 0 %</div><div class="pb"><i id="pbi"></i></div></div>
 <div class="card"><h2>Identité</h2>
 <label>Photo (facultative)</label>
 <div class="photo"><img class="pv" id="pv" alt="" style="display:none"><div class="row"><button class="small" id="pickPh" type="button">Ajouter une photo</button><button class="small" id="rmPh" type="button" style="display:none">Retirer</button></div><input type="file" id="phIn" accept="image/*"></div>
@@ -183,8 +208,18 @@ body *{visibility:hidden}
 </section>
 </main>
 <section class="land" id="faq"><h2>Questions fréquentes</h2><details><summary>Puis-je modifier mon CV avant de payer ?</summary><p>Oui. Vous remplissez, changez de modèle et de couleur autant que vous voulez. Le paiement n’intervient qu’au téléchargement.</p></details><details><summary>Dans quel format est mon CV ?</summary><p>Un PDF au format A4, que vous pouvez envoyer par email ou déposer sur les sites d’emploi.</p></details><details><summary>Mes informations sont-elles conservées ?</summary><p>Non. Elles restent dans votre navigateur et ne sont enregistrées sur aucun serveur.</p></details></section>
-<footer class="ft">CV Rapide. Paiement unique, sans abonnement. Vos informations ne sont enregistrées sur aucun serveur.</footer>
+<footer class="ft">CV Rapide. Paiement unique, sans abonnement. Vos informations ne sont enregistrées sur aucun serveur.<br><button class="lk" id="lnk">Mentions légales et conditions de vente</button><br>© 2026 wiweb-ci. Tous droits réservés.</footer>
 <div class="bar"><span id="priceTag">2,99 €</span><button class="pri" id="dl">Télécharger le PDF</button></div>
+<div class="modal" id="lgm"><div class="box"><h2>Mentions légales et conditions de vente</h2>
+<h3>Éditeur du site</h3><p>CV Rapide est un service édité par wiweb-ci, Côte d’Ivoire. Contact et WhatsApp : +225 07 47 17 35 38.</p>
+<h3>Service et prix</h3><p>CV Rapide permet de créer un CV en ligne, de choisir un modèle puis de le télécharger au format PDF. La création et l’aperçu sont gratuits. Le téléchargement du PDF coûte 650 FCFA, en paiement unique et sans abonnement.</p>
+<h3>Paiement</h3><p>Le paiement est effectué sur la plateforme Chariow, qui traite les moyens de paiement proposés. Une fois le paiement validé, le client revient sur le site et peut télécharger son CV.</p>
+<h3>Livraison</h3><p>Le produit est numérique et disponible immédiatement après le paiement. Le client peut télécharger son CV pendant 24 heures sur le même appareil et le même navigateur.</p>
+<h3>Politique de remboursement</h3><p>Le produit étant un contenu numérique livré immédiatement, aucun remboursement n’est possible après le téléchargement du PDF. Le client peut modifier gratuitement son CV et changer de modèle avant de payer. Il est responsable de l’exactitude des informations saisies.</p>
+<p style="margin-top:8px">Un remboursement ou un nouvel accès est accordé uniquement dans ces cas : paiement effectué deux fois, ou paiement validé sans que le téléchargement soit possible. La demande se fait par WhatsApp au +225 07 47 17 35 38, avec la preuve de paiement, dans les 7 jours suivant l’achat.</p>
+<h3>Données personnelles</h3><p>Les informations saisies dans le CV restent dans le navigateur du client. Elles ne sont ni envoyées ni enregistrées sur un serveur de wiweb-ci. Une sauvegarde temporaire est conservée dans le navigateur pour retrouver le CV après le paiement. Les données de paiement sont collectées par Chariow selon sa propre politique. wiweb-ci s’engage à respecter la réglementation ivoirienne applicable.</p>
+<h3>Propriété intellectuelle</h3><p>Le site, ses modèles et son design appartiennent à wiweb-ci. Le client reste propriétaire du contenu de son CV et peut utiliser le PDF obtenu librement.</p>
+<button class="pri" id="lgc" style="width:100%;margin-top:16px">Fermer</button></div></div>
 <div class="modal" id="modal"><div class="box">
 <h2>Votre CV est prêt</h2><div class="price" id="price"></div>
 <ul><li>PDF au format A4, sans filigrane</li><li>Modèle choisi : <span id="mname"></span></li><li>Paiement unique, sans abonnement</li></ul>
@@ -294,6 +329,31 @@ function render(){
   else{cls="t-"+model;h=ph+head+ctLine+prof+ex+ed+skTags+lgInline+itInline}
   var cv=$("cv");cv.className=cls;cv.style.setProperty("--a",ACC);cv.innerHTML=h;fit();
 }
+function prog(){
+  var f=[D.name,D.title,D.email,D.phone,D.city,D.summary,D.photo,D.skills,D.langs,D.ints];
+  var n=f.filter(function(x){return x&&String(x).trim()}).length;
+  if(D.exps.some(function(e){return e.role&&e.role.trim()}))n++;
+  if(D.edus.some(function(e){return e.t&&e.t.trim()}))n++;
+  var p=Math.round(n/12*100),t=$("pt"),b=$("pbi");
+  if(t)t.textContent="Votre CV est complet à "+p+" %"+(p>=100?" ✓":"");
+  if(b)b.style.width=p+"%";
+}
+setInterval(prog,800);
+$("lnk").onclick=function(){$("lgm").classList.add("on")};
+$("lgc").onclick=function(){$("lgm").classList.remove("on")};
+(function(){
+  var mc=document.querySelector(".mc"),chip=document.querySelector(".chip");if(!mc)return;
+  var V=[["Moderne","#2f5bff"],["Créatif","#0f766e"],["Élégant","#7c3aed"],["Classique","#1f2937"],["Moderne","#c2410c"]],cls=["v0","v1","v2","v3","v0"],i=0;
+  function show(){mc.style.opacity=0;setTimeout(function(){mc.className="mc "+cls[i];mc.style.setProperty("--mc",V[i][1]);chip.textContent="Modèle "+V[i][0];mc.style.opacity=1;i=(i+1)%V.length},300)}
+  if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches)setInterval(show,2800);
+})();
+(function(){
+  if(!("IntersectionObserver" in window))return;
+  var els=document.querySelectorAll(".steps,.why,.priceband");
+  els.forEach(function(e){e.classList.add("rv")});
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+})();
 function buildColors(){
   var c=$("colors");c.innerHTML="";
   var l=document.createElement("span");l.textContent="Couleur";l.style.cssText="color:var(--mute);font-size:.85rem";c.appendChild(l);
