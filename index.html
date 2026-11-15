@@ -433,7 +433,7 @@ function restore(){try{var s=JSON.parse(localStorage.getItem("cvr")||"null");if(
 restore();
 buildLists();buildModels();buildColors();phUI();render();
 setInterval(save,3000);
-var RET=/paye|paid|success|succes/i.test(location.hash+location.search)||/chariow/i.test(document.referrer);try{var T=Date.now();if(RET)localStorage.setItem("cvr_paid",String(T));var pt=parseInt(localStorage.getItem("cvr_paid")||"0",10);if(pt&&T-pt<14400000)paid=true}catch(e){if(RET)paid=true}
+var RET=false;try{RET=new URLSearchParams(location.search).get("r")===("ztVSZV5o"+"WSfH3QsY")}catch(e){}try{var T=Date.now();if(RET)localStorage.setItem("cvr_paid",String(T));var pt=parseInt(localStorage.getItem("cvr_paid")||"0",10);if(pt&&T-pt<14400000)paid=true}catch(e){if(RET)paid=true}
 if(paid){$("dl").textContent="Télécharger le PDF (payé)"}
 if(RET){tab(false);var bn=document.createElement("div");bn.className="card";bn.textContent="Paiement reçu. Remplissez votre CV, choisissez votre modèle, puis cliquez sur « Télécharger le PDF ».";$("pf").insertBefore(bn,$("pf").firstChild);$("app").scrollIntoView()}
 try{var pd=parseInt(localStorage.getItem("cvr_pend")||"0",10);if(false&&pd){$("ipaid").style.display="block";var b2=document.createElement("div");b2.className="card";b2.innerHTML="<b>Vous venez de payer ?</b><br>Touchez le bouton pour débloquer le téléchargement de votre PDF.<br>";var bt=document.createElement("button");bt.className="pri";bt.style.marginTop="10px";bt.textContent="J’ai payé : débloquer le téléchargement";bt.onclick=function(){unlock();b2.remove();doPrint()};b2.appendChild(bt);$("pf").insertBefore(b2,$("pf").firstChild)}}catch(e){}
